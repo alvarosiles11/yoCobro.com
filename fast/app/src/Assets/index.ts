@@ -86,6 +86,7 @@ import TikTok, { ReactComponent as TikTokW } from './svg/tiktok.svg';
 import Ver, { ReactComponent as VerW } from './svg/ver.svg';
 import WhatsApp, { ReactComponent as whatsAppW } from './svg/whatsApp.svg';
 import YouTube, { ReactComponent as YouTubeW } from './svg/youtube.svg';
+import IconTienda, { ReactComponent as IconTiendaW } from './svg/tienda.svg';
 
 
 
@@ -104,6 +105,8 @@ import YouTube, { ReactComponent as YouTubeW } from './svg/youtube.svg';
 
 const Assets: SAssets = {
     svg: {
+        "IconTienda": { Native: IconTienda, Web: IconTiendaW },
+
         "IconFaceb": { Native: IconFaceb, Web: IconFacebW },
         "IconGoogle": { Native: IconGoogle, Web: IconGoogleW },
         "IconChecked": { Native: IconChecked, Web: IconCheckedw },

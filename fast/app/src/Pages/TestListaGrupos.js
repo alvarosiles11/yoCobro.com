@@ -1,53 +1,27 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { SDate, SList, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import { SDate, SHr, SIcon, SList, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import FloatButtomTap from '../Components/FloatButtomTap';
 
-const datos=[
-	{'codigo': 1,'descripcion':'anillo 10','estado':'1'},
-	{'codigo': 2,'descripcion':'anillo 1','estado':'1'},
-	{'codigo': 3,'descripcion':'anillo 2','estado':'1'},
-	{'codigo': 4,'descripcion':'anillo 3','estado':'0'}
+const datos = [
+	{ 'codigo': 1, 'descripcion': 'Anillo 10', 'estado': '1' },
+	{ 'codigo': 2, 'descripcion': 'Anillo 1', 'estado': '1' },
+	{ 'codigo': 3, 'descripcion': 'Anillo 2', 'estado': '1' },
+	{ 'codigo': 4, 'descripcion': 'Anillo 3', 'estado': '0' }
 ];
-	
+
 
 
 class TestListaGrupos extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+		};
 
-    getBotones(obj) {
-		var OPINAR = (
-			<SView col={"xs-6"} center onPress={() => { SNavigation.navigate('calificacion', { key_pedido: obj.codigo }) }}   >
-				<SView width={120} height={24} style={{ backgroundColor: '#EEEEEE', borderRadius: 4 }} center>
-					<SText font={"Roboto"} fontSize={12} color={"#666"}>Opinar {obj.codigo}  </SText>
-				</SView>
-			</SView>
-		)
-		var REPETIR = (
-			<SView col={"xs-6"} center>
-				<SView width={120} height={24} style={{ backgroundColor: '#EEEEEE', borderRadius: 4 }} center onPress={() => {
-					SNavigation.navigate('restaurante/perfil', { key: obj?.restaurante?.key })
-				}}>
-					<SText font={"Roboto"} fontSize={12} color={"#666"}>Repetir</SText>
-				</SView>
-			</SView>
-		)
-
-		if (obj.state == "pagado") return <BarraCargando />
-		if (obj.state == "no_recogido") {
-			OPINAR = <SView col={"xs-6"} />
-		}
-
-		return (<SView col={"xs-12"} row   >
-			{OPINAR}
-			{REPETIR}
-		</SView>);
 	}
 
-    getCompras() {
+
+	getCompras() {
 		// const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
 		// var dataPedido = pedido.Actions.getPedidoByKeyUsuarioDetalle(this.props.state.usuarioReducer.usuarioLog.key, this.props)
 		// if (!dataPedido) return <SLoad />
@@ -60,46 +34,43 @@ class TestListaGrupos extends Component {
 					<SList
 						data={datos}
 						space={16}
-						order={[{ key: "fecha", order: "desc", peso: 1 }]}
+						order={[{ key: "codigo", order: "desc", estado: "0" }]}
 						render={(obj, key) => {
-							// console.log("resta ", obj.state);
-							return <SView col={"xs-12 "} height={120} row center border={STheme.color.card} style={{ borderRadius: 8, }}
-								// onPress={() => {
-								// 	if (obj.state == "pagado") {
-								// 		SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
-								// 		if (obj.delivery == 0) {
-								// 			SNavigation.navigate("pedido/usuario/pagado", { key_pedido: obj.key })
-								// 		}
-								// 		if (obj.delivery != 0) {
-								// 			SNavigation.navigate("pedido/delivery/pagado", { key_pedido: obj.key })
-								// 		}
-								// 	}
-								// 	if (obj.state == "no_recogido") {
-								// 		SNavigation.navigate("pedido/noRecogido", { key_pedido: obj.key });
-								// 	}
-								// }}
-                                
-                                >
+
+							if (obj.estado == "0") return;
+
+							return <SView col={"xs-12 "} height={100} row center border={STheme.color.card} style={{ borderRadius: 8, }}>
 								<SView col={"xs-12"} row center border={"transparent"}  >
 									<SView col={"xs-2"} center border={"transparent"}  >
 										<SView height={40} width={40} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
- 											{/* <SImage src={`${SSocket.api.root}restaurante/${obj?.restaurante?.key}`} style={{ borderRadius: 8, resizeMode: 'cover' }} /> */}
+											<SIcon name={'IconTienda'} height={24} width={40} fill={'#E75248'} />
 										</SView>
 									</SView>
 									<SView col={"xs-8"} border={"transparent"} style={{}} >
-										<SText fontSize={16} font={"Roboto"} color={STheme.color.text} >{obj?.codigo}</SText>
-										{/* <SText fontSize={16} font={"Roboto"} color={STheme.color.text} >{obj?.restaurante?.nombre}</SText> */}
-										<SText fontSize={12} font={"Roboto"} color={STheme.color.text} >{new SDate(obj.fecha, "yyyy-MM-dd").toString("dd de MONTH")}  </SText>
-										<SView height={8} />
-										{/* <SText fontSize={12} font={"Roboto"} color={STheme.color.primary} bold >{pedido.Actions.getDetalleEstado(obj)}</SText> */}
+										<SText fontSize={16} font={"Roboto"} color={STheme.color.text} bold >Grupo {obj?.descripcion}</SText>
+										<SHr height={4} />
+										<SText fontSize={12} font={"Roboto"} color={STheme.color.text} >Descripción {obj?.descripcion}  </SText>
 									</SView>
-								 
-								</SView>
-								<SView col={"xs-12"} center>
-									<SView col={"xs-11"} row center border={"transparent"}>
-										{this.getBotones(obj)}
+									<SHr height={8} />
+									<SView col={"xs-11"} row>
+										<SView col={"xs-6"} center    >
+											<SView width={120} height={24} style={{
+												backgroundColor: '#EEEEEE', borderRadius: 8,
+												borderColor: "red", borderWidth: 1.5
+											}} center onPress={() => { SNavigation.navigate('testUbicacion', { key: obj.codigo }) }}>
+												<SText font={"Roboto"} fontSize={12} color={"#666"}>Lista</SText>
+											</SView>
+										</SView>
+										<SView col={"xs-6"} center>
+											<SView width={120} height={24} style={{ backgroundColor: '#E75248', borderRadius: 8 }} center onPress={() => {
+												SNavigation.navigate('testMapa', { key: obj.codigo })
+											}}>
+												<SText font={"Roboto"} fontSize={12} color={"#ffff"}>Mapa</SText>
+											</SView>
+										</SView>
 									</SView>
 								</SView>
+
 							</SView>
 						}} />
 				</SView>
@@ -108,20 +79,18 @@ class TestListaGrupos extends Component {
 	}
 
 
-    render() {
-        return (
- 
-			<SPage title={'Mis Compras'} onRefresh={() => {
-				console.log("refrescando");
-				// pedido.Actions.refresh(this.props);
-			}}>
-				{this.getCompras()}
+	render() {
+		return (<>
+			<SPage title={'Mis Grupos'} onRefresh={() => { // pedido.Actions.refresh(this.props);
+			}}> {this.getCompras()}
 			</SPage>
-	 
+			<FloatButtomTap onPress={() => { SNavigation.navigate("testRegistroGrupo"); }} />
+		</>
+
 		);
-    }
+	}
 }
 const initStates = (state) => {
-    return { state }
+	return { state }
 };
 export default connect(initStates)(TestListaGrupos);

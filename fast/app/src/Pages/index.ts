@@ -11,6 +11,10 @@ import MisCompras from './MisCompras';
 import SelectDireccion from './SelectDireccion';
 import Test from './Test';
 import TestListaGrupos from './TestListaGrupos';
+import TestUbicacion from './TestListaUbicacion';
+import TestMapa from './TestMapa';
+import TestRegistroGrupo from './TestRegistroGrupo';
+import TestRegistroUbicacion from './TestRegistroUbicacion';
 
 
 // import MensajeSolicitud from '../Services/Tapeke/Components/pedido/Pages/MensajeSolicitud';
@@ -19,10 +23,11 @@ const Pages = {
     // "/": MensajeSolicitud,
     // "/": chatPage,
     "/": TestListaGrupos,
-    // "/": TestRegistroGrupo,
-    // "/": TestMapa,
-    // "/": TestRegistroUbicacion,
-    // "/": TestListaUbicacion,
+
+    "testRegistroGrupo": TestRegistroGrupo,
+    "testMapa": TestMapa,
+    "testRegistroUbicacion": TestRegistroUbicacion,
+    "testUbicacion": TestUbicacion,
     // "/": Test,
     // "/": PedidoQR,
     // "/": Preparacion,
