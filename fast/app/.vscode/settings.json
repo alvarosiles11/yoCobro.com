@@ -1,0 +1,7 @@
+{
+    "svn.ignoreMissingSvnWarning": true,
+    "prettier.bracketSpacing": false,
+    "prettier.embeddedLanguageFormatting": "off",
+    "prettier.enable": false,
+    "prettier.proseWrap": "never"
+}

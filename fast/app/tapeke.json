@@ -1,0 +1,211 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2022-04-28T07:57:19.278Z",
+    "__export_source": "insomnia.desktop.app:v2022.2.1",
+    "resources": [
+        {
+            "_id": "req_6b51c84e040e45409d506f3c89081dca",
+            "parentId": "fld_e8a88301030c4f7ba1668d0b08dc67b0",
+            "modified": 1651130248593,
+            "created": 1651060404083,
+            "url": "{{url}}api",
+            "name": "getDetalle",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"component\":\"pedido\",\n\t\"type\":\"getDetalle\",\n\t\"key_pedido\":\"{{key_pedido}}\"\n}\n"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_95216fe58df14a419c942bde955d56a9"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1651060404083,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_e8a88301030c4f7ba1668d0b08dc67b0",
+            "parentId": "wrk_391fc6320d174a09999a26dace58d6a3",
+            "modified": 1651060384791,
+            "created": 1651060384791,
+            "name": "pedido",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1651060384791,
+            "_type": "request_group"
+        },
+        {
+            "_id": "wrk_391fc6320d174a09999a26dace58d6a3",
+            "parentId": null,
+            "modified": 1651060304714,
+            "created": 1651060304714,
+            "name": "servisofts.tapeke",
+            "description": "",
+            "scope": "collection",
+            "_type": "workspace"
+        },
+        {
+            "_id": "req_29c49afab8a9472381decfd19277c1fd",
+            "parentId": "fld_e8a88301030c4f7ba1668d0b08dc67b0",
+            "modified": 1651130350869,
+            "created": 1651130238811,
+            "url": "{{url}}api",
+            "name": "select_pay_method",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"component\":\"pedido\",\n\t\"type\":\"select_pay_method\",\n\t\"key_pedido\":\"{{key_pedido}}\"\n}\n"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_73bc8e85cae848a787bd5b689e7b0ead"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1651051566714.5,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_1f59f00cd31842578e8ddb38e069c59e",
+            "parentId": "fld_e8a88301030c4f7ba1668d0b08dc67b0",
+            "modified": 1651130252233,
+            "created": 1651062286940,
+            "url": "{{url}}api",
+            "name": "pagar",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"component\":\"pedido\",\n\t\"type\":\"pagar\",\n\t\"key_pedido\":\"{{key_pedido}}\"\n}\n"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_95216fe58df14a419c942bde955d56a9"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1651042729346,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_35f522ebf0b84b3f9f4abd7a0bfe8e02",
+            "parentId": "fld_e8a88301030c4f7ba1668d0b08dc67b0",
+            "modified": 1651132614041,
+            "created": 1651062802482,
+            "url": "{{url}}api",
+            "name": "registro",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"component\":\"pedido\",\n\t\"type\":\"registro\",\n\t\"key_pedido\":\"{{key_pedido}}\",\n\t\"data\":{\n\t\t\"key_pack\":\"06876a09-0da7-4ed1-b8f5-8e9bd71b8207\",\n\t\t\"fecha\":\"2022-04-15\",\n\t\t\"cantidad\":1,\n\t\t\"delivery\":false,\n\t\t\"direccion\":{\n\t\t\t\t\"direccion\":\"Calle no encontrada.\",\n\t\t\t\t\"latitude\":24.3432,\n\t\t\t\t\"longitude\":-17.2322\n\t\t}\n\t},\n\t\"key_usuario\":\"322323-232323\"\n}\n"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_95216fe58df14a419c942bde955d56a9"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1651033891977.5,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "env_e20e96fdbded9a7497792ea74254966f73ae3892",
+            "parentId": "wrk_391fc6320d174a09999a26dace58d6a3",
+            "modified": 1651060316027,
+            "created": 1651060304718,
+            "name": "Base Environment",
+            "data": {},
+            "dataPropertyOrder": {},
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1651060304718,
+            "_type": "environment"
+        },
+        {
+            "_id": "jar_e20e96fdbded9a7497792ea74254966f73ae3892",
+            "parentId": "wrk_391fc6320d174a09999a26dace58d6a3",
+            "modified": 1651060304720,
+            "created": 1651060304720,
+            "name": "Default Jar",
+            "cookies": [],
+            "_type": "cookie_jar"
+        },
+        {
+            "_id": "spc_31f45e5b9df14baca5601cd3f82c3d7a",
+            "parentId": "wrk_391fc6320d174a09999a26dace58d6a3",
+            "modified": 1651060304715,
+            "created": 1651060304715,
+            "fileName": "servisofts.tapeke",
+            "contents": "",
+            "contentType": "yaml",
+            "_type": "api_spec"
+        },
+        {
+            "_id": "env_9622498c94ff4a3889a4cee2fb33a029",
+            "parentId": "env_e20e96fdbded9a7497792ea74254966f73ae3892",
+            "modified": 1651066651033,
+            "created": 1651060318680,
+            "name": "servisofts.tapeke.produccion",
+            "data": {
+                "url": "http://192.168.3.2:30031/",
+                "key_pedido": "2db10bd2-fb22-44af-a54e-32516ffbe"
+            },
+            "dataPropertyOrder": {
+                "&": [
+                    "url",
+                    "key_pedido"
+                ]
+            },
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1651060318680,
+            "_type": "environment"
+        }
+    ]
+}
