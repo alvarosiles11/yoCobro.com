@@ -1,5 +1,9 @@
 import Services from "../Services";
-import TestListaGrupos from "./TestListaGrupos";
+import Grafico from "../Services/Geologia/Components/grupos/Pages/Grafico";
+import ListaGrupo from "../Services/Geologia/Components/grupos/Pages/Lista";
+import RegistroGrupo from "../Services/Geologia/Components/grupos/Pages/Registro";
+import Lista from "../Services/Geologia/Components/Ubicacion/Pages/Lista";
+import Registro from "../Services/Geologia/Components/Ubicacion/Pages/Registro";
 import TestUbicacion from "./TestListaUbicacion";
 import TestMapa from "./TestMapa";
 import TestRegistroGrupo from "./TestRegistroGrupo";
@@ -8,7 +12,13 @@ import TestRegistroUbicacion from "./TestRegistroUbicacion";
 const Pages = {
   // "/": MensajeSolicitud,
   // "/": chatPage,
-  "/": TestListaGrupos,
+  "/": Registro,
+  ListaU: Lista,
+  Registro: RegistroGrupo,
+  Grafico: Grafico,
+  Lista: ListaGrupo,
+  // "/": Grafico,
+  // "/": TestListaGrupos,
   testRegistroGrupo: TestRegistroGrupo,
   testMapa: TestMapa,
   testRegistroUbicacion: TestRegistroUbicacion,
