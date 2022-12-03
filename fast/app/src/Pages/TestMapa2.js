@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SInput, SMapView, SPage, SText, SThread, SView } from 'servisofts-component';
+import { SHr, SIcon, SMapView, SNavigation, SPage, SThread, SView } from 'servisofts-component';
+import FloatButtomTap from '../Components/FloatButtomTap';
 import Marker from '../Components/Marker';
 import PButtom from '../Components/PButtom';
 
@@ -30,88 +31,89 @@ const datos = [
 	{ 'codigo': 23, 'empresa': 'servisofts', 'descripcion': 'b', 'fecha': '08/01/2022', 'hora': '18:18:00', 'latitud': '-17.797893472519387', 'longitud': '-63.18487114615332', 'grupo': 'anillo 2', 'estado': '1' },
 	{ 'codigo': 24, 'empresa': 'servisofts', 'descripcion': 'c', 'fecha': '09/01/2022', 'hora': '19:18:00', 'latitud': '-17.796866643724535', 'longitud': '-63.18946406495324', 'grupo': '3', 'estado': '1' }];
 
-
 class TestMapa extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            region: false, dirType: "moveMap", nombre: " "};
-    }
-
-    componentDidMount() {
-        new SThread(100, "sad", false).start(() => {
-            this.setState({
-                region: {
-                    latitude: -17.7833276,
-                    longitude: -63.1821408,
-                }
-            })
-        })
-
-    }
-
-		getDirecciones() {
-			// var filtro = filtros.Actions.getFiltrosActivos(this.props);
-			// var data = Parent.Actions.getAllFilter(filtro, this.props);
-			// if (!data) return null;
-			// let size = 70;
-			return datos.map((obj, index) => {
-					return <Marker key={"marker" + index} lat={obj.latitud} lng={obj.longitud} data={obj} onPress={() => {
-							SNavigation.navigate("restaurante/perfil", { key: obj.codigo });
-					}} />
-			})
+	constructor(props) {
+		super(props);
+		this.state = {
+			region: false, dirType: "moveMap", nombre: " "
+		};
 	}
 
-    showMapa() {
-        return <>
-            <SView col={"xs-12"} flex>
-                <SMapView
-                    initialRegion={{
-                        latitude: -17.7833276,
-                        longitude: -63.1821408,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                    }}
-                     ref={(map) => this.map = map}
+	componentDidMount() {
+		new SThread(100, "sad", false).start(() => {
+			this.setState({
+				region: {
+					latitude: -17.7833276,
+					longitude: -63.1821408,
+				}
+			})
+		})
 
-                    onRegionChangeComplete={(region) => {
-                         this.setState({ region: region, dirType: "moveMap" });
-                    }}
-                    preventCenter>
-{this.getDirecciones()}
-
-                </SMapView>
-            </SView>
-
-            <SView style={{ position: 'absolute', }} center   >
-                <SIcon name="MarcadorMapa" width={20} height={20} />
-            </SView>
-        </>
-    }
+	}
 
 
+	getRestaurante() {
+		// var filtro = filtros.Actions.getFiltrosActivos(this.props);
+		// var data = Parent.Actions.getAllFilter(filtro, this.props);
+		// if (!data) return null;
+		// let size = 70;
+		return datos.map((obj, index) => {
+				return <Marker key={"marker" + index} lat={obj.latitud} lng={obj.longitud} data={obj} onPress={() => {
+						SNavigation.navigate("restaurante/perfil", { key: obj.codigo });
+				}} />
+		})
+}
 
-    formulario() {
-        //  if (!this.props.state.direccion_usuarioReducer.miDireccion) return null;
-        return <SView col={"xs-11"} >
-            <SInput fontSize={12} placeholder={"Nombre de la Ubicación"} isRequired={true} height={55} ref={(ref) => { this.inpNombreUbicacion = ref }}/>
-            {/* <SInput fontSize={12} placeholder={"Descripción"} isRequired={true} height={55} ref={(ref) => { this.inpNombreUbicacion = ref }}/> */}
-        </SView>
-    }
 
-    render() {
+	showMapa() {
+		return <>
+			<SView col={"xs-12"} flex>
+				<SMapView
+					initialRegion={{
+						latitude: -17.7833276,
+						longitude: -63.1821408,
+						latitudeDelta: 0.0922,
+						longitudeDelta: 0.0421,
+					}}
+					// para ejecutar centar mapa
+					ref={(map) => this.map = map}
+					// onPress={(e) => {
+					//      this.setState({ regionClick: e });
+					// }}
+					onRegionChangeComplete={(region) => {
+						// cuando cambio de posicion (mouse)
+						this.setState({ region: region, dirType: "moveMap" });
+					}}
+					preventCenter>
+
+{this.getRestaurante()}
 
 
-        return (<SPage title={'Elegir mi dirección'} disableScroll center>
+				</SMapView>
+			</SView>
 
-            <SView col={"xs-12"} center flex>
-                {this.showMapa()}
-            </SView >
+			<SView style={{ position: 'absolute', }} center   >
+				<SIcon name="MarcadorMapa" width={20} height={20} />
+			</SView>
+		</>
+	}
 
-            <SView col={"xs-12 md-10 lg-8 xl-6"} height={280} row center>
+
+
+
+	render() {
+
+
+		return (
+			<>
+				<SPage title={'Elegir mi dirección'} disableScroll center>
+					<SView col={"xs-12"} center flex>
+						{this.showMapa()}
+					</SView >
+					<SView col={"xs-12 md-10 lg-8 xl-6"} height={280} row center>
                 <SHr height={20} />
                 <SView col={"xs-12"} center row border={'transparent'}>
-                    {this.formulario()}
+                    {/* {this.getAlgo()} */}
                     <SHr height={10} />
                 </SView>
 
@@ -126,26 +128,27 @@ class TestMapa extends Component {
 
                 <SView col={"xs-8.8"} row center border={'transparent'}  >
                     <PButtom fontSize={16} onPress={() => {
-                        // if (!this.inpNombreUbicacion.verify()) return null;
-                        // var data = {
-                        //     descripcion: this.inpNombreUbicacion.getValue(),
-                        //     latitude: this.state.region?.latitude,
-                        //     longitude: this.state.region?.longitude,
-                        //     direccion: this.state.nombre,
-                        // }
-                        // console.log(data);
+                        if (!this.inpNombreUbicacion.verify()) return null;
+                        var data = {
+                            descripcion: this.inpNombreUbicacion.getValue(),
+                            latitude: this.state.region?.latitude,
+                            longitude: this.state.region?.longitude,
+                            direccion: this.state.nombre,
+                        }
+                        console.log(data);
                         // Parent.Actions.registro(data, this.props);
-                     }}>GUARDAR ESTA UBICACIÓN</PButtom>
+                     }}>ELEGIR ESTA UBICACIÓN</PButtom>
                 </SView>
                 <SHr height={10} />
             </SView>
 
-
-        </ SPage >
-        );
-    }
+				</ SPage >
+				<FloatButtomTap onPress={() => { SNavigation.navigate("testRegistroUbicacion");}} />
+			</>
+ 		);
+	}
 }
 const initStates = (state) => {
-    return { state }
+	return { state }
 };
 export default connect(initStates)(TestMapa);

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { SDate, SHr, SIcon, SList, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import { SHr, SIcon, SList, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import FloatButtomTap from '../Components/FloatButtomTap';
 
 const datos = [

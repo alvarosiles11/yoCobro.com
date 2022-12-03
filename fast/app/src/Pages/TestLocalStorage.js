@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
-import { SButtom, SHr, SPage, SText } from 'servisofts-component';
-import { SStorage } from 'servisofts-component'
-import TipoPago_QR from '../Services/Multipagos/Components/payment_type/Components/TipoPago_QR';
-import TipoPago_TigoMoney from '../Services/Multipagos/Components/payment_type/Components/TipoPago_TigoMoney';
+import { SHr, SPage, SStorage, SText } from 'servisofts-component';
+import TipoPago_QR from '../Services/Multipagos/Components/ubicacion/Components/TipoPago_QR';
+import TipoPago_TigoMoney from '../Services/Multipagos/Components/ubicacion/Components/TipoPago_TigoMoney';
 
 class Test extends Component {
     constructor(props) {
