@@ -12,7 +12,7 @@ const datos = [
 
 
 
-class TestListaGrupos extends Component {
+class listas extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -57,13 +57,13 @@ class TestListaGrupos extends Component {
 											<SView width={120} height={24} style={{
 												backgroundColor: '#EEEEEE', borderRadius: 8,
 												borderColor: "red", borderWidth: 1.5
-											}} center onPress={() => { SNavigation.navigate('testUbicacion', { key: obj.codigo }) }}>
+											}} center onPress={() => { SNavigation.navigate('ubicacion/lista', { key: obj.codigo }) }}>
 												<SText font={"Roboto"} fontSize={12} color={"#666"}>Lista</SText>
 											</SView>
 										</SView>
 										<SView col={"xs-6"} center>
 											<SView width={120} height={24} style={{ backgroundColor: '#E75248', borderRadius: 8 }} center onPress={() => {
-												SNavigation.navigate('testMapa', { key: obj.codigo })
+												SNavigation.navigate('grupos/grafico', { key: obj.codigo })
 											}}>
 												<SText font={"Roboto"} fontSize={12} color={"#ffff"}>Mapa</SText>
 											</SView>
@@ -93,4 +93,4 @@ class TestListaGrupos extends Component {
 const initStates = (state) => {
 	return { state }
 };
-export default connect(initStates)(TestListaGrupos);
+export default connect(initStates)(listas);

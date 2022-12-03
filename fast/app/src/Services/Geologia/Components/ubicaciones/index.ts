@@ -3,10 +3,10 @@ const component = "ubicacion"; // COMPONENT NAME
 const version = "2.0";
 // ---------------------------------------
 import Actions from "./Actions";
-import Reducer from "./Reducer";
+import lista from "./Pages/lista";
+import registro from "./Pages/registro";
 
-import Lista from "./Pages/Lista";
-import Registro from "./Pages/Registro";
+import Reducer from "./Reducer";
 
 export default {
   component,
@@ -16,7 +16,8 @@ export default {
     [component + "Reducer"]: Reducer
   },
   Pages: {
-    [component]: Lista,
-    [component + "/registro"]: Registro
+    [component]: lista,
+    [component + "/lista"]: lista,
+    [component + "/registro"]: registro
   }
 };

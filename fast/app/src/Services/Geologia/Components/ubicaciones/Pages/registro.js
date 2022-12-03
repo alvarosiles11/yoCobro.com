@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { SHr, SIcon, SInput, SMapView, SPage, SText, SThread, SView } from 'servisofts-component';
 import PButtom from '../../../../../Components/PButtom';
 
-class TestRegistroUbicacion extends Component {
+class registrosss extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -149,4 +149,4 @@ class TestRegistroUbicacion extends Component {
 const initStates = (state) => {
     return { state }
 };
-export default connect(initStates)(TestRegistroUbicacion);
+export default connect(initStates)(registrosss);

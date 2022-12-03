@@ -10,7 +10,7 @@ import {
   SView
 } from "servisofts-component";
 
-class TestRegistroGrupo extends Component {
+class registros extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -75,4 +75,4 @@ class TestRegistroGrupo extends Component {
 const initStates = state => {
   return {state};
 };
-export default connect(initStates)(TestRegistroGrupo);
+export default connect(initStates)(registros);

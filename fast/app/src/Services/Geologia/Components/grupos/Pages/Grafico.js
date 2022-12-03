@@ -32,7 +32,7 @@ const datos = [
 	{ 'codigo': 24, 'empresa': 'servisofts', 'descripcion': 'c', 'fecha': '09/01/2022', 'hora': '19:18:00', 'latitud': '-17.796866643724535', 'longitud': '-63.18946406495324', 'grupo': '3', 'estado': '1' }];
 
 
-class Grafico extends Component {
+class graficos extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -149,4 +149,4 @@ class Grafico extends Component {
 const initStates = (state) => {
     return { state }
 };
-export default connect(initStates)(Grafico);
+export default connect(initStates)(graficos);

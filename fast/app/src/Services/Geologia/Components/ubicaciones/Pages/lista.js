@@ -31,7 +31,7 @@ const datos = [
 	{ 'codigo': 24, 'empresa': 'servisofts', 'descripcion': 'c', 'fecha': '09/01/2022', 'hora': '19:18:00', 'latitud': '-17.796866643724535', 'longitud': '-63.18946406495324', 'grupo': '3', 'estado': '1' }];
 
 
-class TestListaUbicacion extends Component {
+class listo extends Component {
 	constructor(props) {
 		super(props);
 
@@ -127,7 +127,7 @@ class TestListaUbicacion extends Component {
 				</SView >
 			</ SPage >
 			<FloatButtomTap onPress={() => {
-				SNavigation.navigate("testRegistroUbicacion");
+				SNavigation.navigate("ubicacion/registro");
 				// this.props.state.direccion_usuarioReducer.estado = 0;
 			}} />
 		</>
@@ -137,4 +137,4 @@ class TestListaUbicacion extends Component {
 const initStates = (state) => {
 	return { state }
 };
-export default connect(initStates)(TestListaUbicacion);
+export default connect(initStates)(listo);
