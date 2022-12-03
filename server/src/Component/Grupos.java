@@ -1,18 +1,16 @@
 package Component;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import Server.SSSAbstract.SSSessionAbstract;
 import Servisofts.SPGConect;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import Server.SSSAbstract.SSSessionAbstract;
 
 public class Grupos {
-    public static final String COMPONENT = "grupos";
+    public static final String COMPONENT = "restaurante";
 
     public static void onMessage(JSONObject obj, SSSessionAbstract session) {
         switch (obj.getString("type")) {
