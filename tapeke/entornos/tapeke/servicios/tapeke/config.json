@@ -1,0 +1,45 @@
+{
+    "ss": "servisofts.tapeke",
+    "socket_client": {
+        "servicio": {
+            "puerto": 10001,
+            "ip": "servicio.ss.lo",
+            "cert": {
+                "OU": "servicio",
+                "pem": "servicio.pem"
+            }
+        },
+        "reconectTime": 5000
+    },
+    "files": {
+        "url": "/u01/servisoftsFiles/tapeke/",
+        "url_gpx":"/u01/servisoftsFiles/tapeke/gpx/"
+    },
+    "data_base": {
+        "puerto": 5432,
+        "pass": "postgres",
+        "ip": "127.0.0.1",
+        "bd_name": "servisofts.tapeke",
+        "user": "postgres"
+    },
+    "nombre": "tapeke",
+    "ssl": {
+        "pass_jks": "Servisofts123.",
+        "cert": {
+            "ST": "Av Banzer",
+            "C": "BO",
+            "E": "ricky.paz.d.97@gmail.com",
+            "OU": "tapeke",
+            "CN": "tapeke.servisofts.com",
+            "L": "Santa Cruz",
+            "O": "Servisofts SRL"
+        },
+        "nombre_jks": "servisofts"
+    },
+    "mail_server": {
+        "host": "smtp.gmail.com",
+        "port": 465,
+        "email": "servisofts.srl@gmail.com",
+        "password": "servisofts123."
+    }
+}

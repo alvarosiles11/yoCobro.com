@@ -1,0 +1,86 @@
+version: '3.5'
+networks: 
+  default:
+    external: true
+    name: servisofts
+
+services:
+  copy_production:
+    image: servisofts/server:latest
+    volumes:
+      - ./entornos/${NAME_FROM:-../.tmp}:/.stemp
+      - ./entornos/${NAME}:/servisoftsbk/.stemp
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    command: cp -r /.stemp /servisoftsbk
+  #------   TERMINAL SSH   ------
+  ssh:
+    image: ghcr.io/linuxserver/openssh-server
+    container_name: servisofts_${NAME}_ssh
+    depends_on: 
+      - copy_production
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/La_Paz
+      - SUDO_ACCESS=true 
+      - PASSWORD_ACCESS=true 
+      - USER_PASSWORD=servisofts 
+      - USER_NAME=servisofts 
+    networks: 
+      default: 
+        ipv4_address: ${IP}
+    volumes:
+      - ./entornos/${NAME}/ssh:/config
+      - ./entornos/${NAME}:/servisofts
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      # - "/etc/resolv.conf:/etc/resolv.conf:ro"
+# -----POSTGRES 
+  postgres:    
+    image: 'postgres:13'
+    restart: always
+    container_name: servisofts_${NAME}_postgres
+    network_mode: "service:ssh"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ./entornos/${NAME}/postgres:/var/lib/postgresql/data
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    depends_on: 
+      - ssh
+    healthcheck:
+      test: pg_isready -U postgres
+
+    #----------------------        SERVICIOS     ----------------------------
+
+  servicio:
+    image: openjdk:11-jdk-oraclelinux8
+    restart: always
+    container_name: servisofts_${NAME}_server
+    depends_on: 
+      - postgres
+    network_mode: "service:ssh"
+    volumes:
+      - ./entornos/${NAME}/servicios:/u01/servicios/
+      - ./entornos/${NAME}/servisoftsFiles:/u01/servisoftsFiles/
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    working_dir: /u01/servicios/tapeke
+    command: java -jar server.jar
+  web:
+    image: nginx:latest
+    container_name: servisofts_${NAME}_web
+    network_mode: "service:ssh"
+    depends_on: 
+      - ssh
+    restart: always
+    volumes:
+      - ./entornos/${NAME}/build:/usr/share/nginx/html
+      - ./entornos/${NAME}/admin/build:/usr/share/nginx/admin
+      - ./entornos/${NAME}/servicios/tapeke/mail:/usr/share/nginx/mail
+      - ./entornos/${NAME}/nginx/conf.d:/etc/nginx/conf.d
+      - "/etc/localtime:/etc/localtime:ro"
+      
