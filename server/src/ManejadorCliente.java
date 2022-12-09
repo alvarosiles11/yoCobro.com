@@ -1,7 +1,13 @@
+import java.sql.SQLException;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import Servisofts.SConsole;
+import Servisofts.SPGConect;
+import SocketCliente.SocketCliente;
+import model.pedido.StateFactory.states;
+import model.pedido.exception.StateException;
+import multipagos.payment_order_callback;
 
 public class ManejadorCliente {
     public static void onMessage(JSONObject data, JSONObject config) {
@@ -27,9 +33,9 @@ public class ManejadorCliente {
             case "usuario":
                 usuario(data, config);
                 break;
-            // case payment_order_callback.COMPONENT:
-            // new payment_order_callback(data, config);
-            // break;
+            case payment_order_callback.COMPONENT:
+                new payment_order_callback(data, config);
+                break;
         }
     }
 

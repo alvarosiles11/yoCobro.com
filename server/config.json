@@ -1,48 +1,48 @@
 {
-    "ss": "servisofts.tapeke",
-    "socket_client": {
-        "servicio": {
-            "puerto": 10001,
-            "ip": "servicio.ss.lo",
-            "cert": {
-                "OU": "servicio",
-                "pem": "servicio.pem"
-            }
-        },
-        "reconectTime": 5000
+  "ss": "servisofts.geologia",
+  "socket_client": {
+    "servicio": {
+      "puerto": 10001,
+      "ip": "34.106.183.138",
+      "cert": {
+        "OU": "servicio",
+        "pem": "servicio.pem"
+      }
     },
-    "files": {
-        "url": "/u01/servisoftsFiles/tapeke/",
-        "url_gpx":"/u01/servisoftsFiles/tapeke/gpx/"
+    "reconectTime": 5000
+  },
+  "files": {
+    "url": "/u01/servisoftsFiles/geologia/",
+    "url_gpx": "/u01/servisoftsFiles/geologia/gpx/"
+  },
+  "data_base": {
+    "puerto": 5432,
+    "pass": "postgres",
+    "ip": "34.106.189.174",
+    "bd_name": "geologia",
+    "user": "postgres"
+  },
+  "nombre": "geologia",
+  "ssl": {
+    "pass_jks": "Servisofts123.",
+    "cert": {
+      "ST": "Av Banzer",
+      "C": "BO",
+      "E": "ricky.paz.d.97@gmail.com",
+      "OU": "geologia",
+      "CN": "geologia.servisofts.com",
+      "L": "Santa Cruz",
+      "O": "Servisofts SRL"
     },
-    "data_base": {
-        "puerto": 5432,
-        "pass": "postgres",
-        "ip": "tapeke.ss.lo",
-        "bd_name": "servisofts.tapeke",
-        "user": "postgres"
-    },
-    "nombre": "tapeke",
-    "ssl": {
-        "pass_jks": "Servisofts123.",
-        "cert": {
-            "ST": "Av Banzer",
-            "C": "BO",
-            "E": "ricky.paz.d.97@gmail.com",
-            "OU": "tapeke",
-            "CN": "tapeke.servisofts.com",
-            "L": "Santa Cruz",
-            "O": "Servisofts SRL"
-        },
-        "nombre_jks": "servisofts"
-    },
-    "mail_server": {
-        "host": "smtp.gmail.com",
-        "port": 465,
-        "email": "tapekeapp@gmail.com",
-        "password": "Tapeke123."
-    },
-    "sms":{
-        "api_key": "live_j9U3Nk0F2uTfjkj9GrPLPMMaW"
-    }
+    "nombre_jks": "servisofts"
+  },
+  "mail_server": {
+    "host": "smtp.gmail.com",
+    "port": 465,
+    "email": "geologiaapp@gmail.com",
+    "password": "geologia123."
+  },
+  "sms": {
+    "api_key": "live_j9U3Nk0F2uTfjkj9GrPLPMMaW"
+  }
 }

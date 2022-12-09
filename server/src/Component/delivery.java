@@ -1,19 +1,20 @@
 package Component;
 
-import java.util.UUID;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Server.SSSAbstract.SSSessionAbstract;
 import Servisofts.SPGConect;
+import Servisofts.SUtil;
 
-public class ubicacion {
-    public static final String COMPONENT = "ubicacion";
-    // public static int validSeconds = 60 * 5;
+public class delivery {
+    public static final String COMPONENT = "delivery";
 
     public static void onMessage(JSONObject obj, SSSessionAbstract session) {
         switch (obj.getString("type")) {
+            case "getActivo":
+                getActivo(obj, session);
+                break;
             case "getAll":
                 getAll(obj, session);
                 break;
@@ -26,28 +27,56 @@ public class ubicacion {
         }
     }
 
-    public static void getAll(JSONObject obj, SSSessionAbstract session) {
+    public static JSONObject getAll(JSONObject obj, SSSessionAbstract session) {
         try {
             String consulta = "select get_all('" + COMPONENT + "') as json";
             JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
             obj.put("data", data);
             obj.put("estado", "exito");
+            return data;
         } catch (Exception e) {
             obj.put("estado", "error");
             e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static JSONObject getActivo(JSONObject obj, SSSessionAbstract session) {
+        try {
+            String key_usuario = obj.getString("key_usuario");
+            String consulta = String.join("\n",
+                    "select to_json(sq1.* ) as json",
+                    "FROM(",
+                    "SELECT ",
+                    "delivery.*,",
+                    "(",
+                    "select array_to_json(array_agg(delivery_pedido.*))",
+                    "FROM delivery_pedido",
+                    "WHERE delivery_pedido.key_delivery = delivery.key",
+                    ") as detalle",
+                    "from delivery",
+                    "where delivery.key_conductor = '" + key_usuario + "'",
+                    "and delivery.estado = 1",
+                    "and delivery.state in ('pedido','aceptado')",
+                    ") sq1");
+            JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
+            obj.put("data", data);
+            obj.put("estado", "exito");
+            return data;
+        } catch (Exception e) {
+            obj.put("estado", "error");
+            e.printStackTrace();
+            return null;
         }
     }
 
     public static void registro(JSONObject obj, SSSessionAbstract session) {
         try {
-
             JSONObject data = obj.getJSONObject("data");
-            data.put("key", UUID.randomUUID().toString());
-            data.put("fecha_on", "now()");
+            data.put("key", SUtil.uuid());
             data.put("estado", 1);
-
+            data.put("fecha_on", SUtil.now());
             SPGConect.insertArray(COMPONENT, new JSONArray().put(data));
-
             obj.put("data", data);
             obj.put("estado", "exito");
         } catch (Exception e) {

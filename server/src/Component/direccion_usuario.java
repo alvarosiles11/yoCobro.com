@@ -1,16 +1,13 @@
 package Component;
 
-import java.util.UUID;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import Server.SSSAbstract.SSSessionAbstract;
 import Servisofts.SPGConect;
+import Servisofts.SUtil;
 
-public class ubicacion {
-    public static final String COMPONENT = "ubicacion";
-    // public static int validSeconds = 60 * 5;
+public class direccion_usuario {
+    public static final String COMPONENT = "direccion_usuario";
 
     public static void onMessage(JSONObject obj, SSSessionAbstract session) {
         switch (obj.getString("type")) {
@@ -40,14 +37,12 @@ public class ubicacion {
 
     public static void registro(JSONObject obj, SSSessionAbstract session) {
         try {
-
             JSONObject data = obj.getJSONObject("data");
-            data.put("key", UUID.randomUUID().toString());
-            data.put("fecha_on", "now()");
+            data.put("key", SUtil.uuid());
             data.put("estado", 1);
-
+            data.put("fecha_on", SUtil.now());
+            data.put("key_usuario", obj.getString("key_usuario"));
             SPGConect.insertArray(COMPONENT, new JSONArray().put(data));
-
             obj.put("data", data);
             obj.put("estado", "exito");
         } catch (Exception e) {
@@ -67,4 +62,5 @@ public class ubicacion {
             e.printStackTrace();
         }
     }
+
 }

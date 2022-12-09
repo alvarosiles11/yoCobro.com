@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SList, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import { SHr, SIcon, SList, SLoad, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import grupo from '..';
 import FloatButtomTap from '../../../../../Components/FloatButtomTap';
 
 const datos = [
@@ -20,13 +21,27 @@ class listas extends Component {
 
 	}
 
-
 	getCompras() {
+
+
+		var dataGrupo = grupo.Actions.getAll(this.props);
+
+		if (!dataGrupo) return <SLoad />
+		return  JSON.stringify(dataGrupo);
+	}
+
+	getCompras1() {
 		// const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
 		// var dataPedido = pedido.Actions.getPedidoByKeyUsuarioDetalle(this.props.state.usuarioReducer.usuarioLog.key, this.props)
 		// if (!dataPedido) return <SLoad />
 		// var arr = dataPedido.filter((item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago" && item.state != "timeout_pago")
 		// if (arr.length == 0) return this.sinCompras();
+
+		// var dataGrupo = grupo.Actions.getAll(this.props);
+
+		// if (!dataGrupo) return <SLoad />
+
+ 		// if (arr.length == 0) return this.sinCompras();
 		return <>
 
 			<SView col={"xs-12"} row center >

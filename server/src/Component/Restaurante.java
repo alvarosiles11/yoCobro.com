@@ -9,7 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import Server.SSSAbstract.SSSessionAbstract;
 
-public class Grupos {
+public class Restaurante {
     public static final String COMPONENT = "restaurante";
 
     public static void onMessage(JSONObject obj, SSSessionAbstract session) {

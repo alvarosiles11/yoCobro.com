@@ -1,16 +1,16 @@
 package Component;
 
+import java.util.Date;
 import java.util.UUID;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import Server.SSSAbstract.SSSessionAbstract;
 import Servisofts.SPGConect;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import Server.SSSAbstract.SSSessionAbstract;
 
-public class ubicacion {
-    public static final String COMPONENT = "ubicacion";
-    // public static int validSeconds = 60 * 5;
+public class usuario_restaurante {
+    public static final String COMPONENT = "usuario_restaurante";
 
     public static void onMessage(JSONObject obj, SSSessionAbstract session) {
         switch (obj.getString("type")) {
@@ -40,14 +40,13 @@ public class ubicacion {
 
     public static void registro(JSONObject obj, SSSessionAbstract session) {
         try {
-
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
+            String fecha_on = formatter.format(new Date());
             JSONObject data = obj.getJSONObject("data");
             data.put("key", UUID.randomUUID().toString());
-            data.put("fecha_on", "now()");
             data.put("estado", 1);
-
+            data.put("fecha_on", fecha_on);
             SPGConect.insertArray(COMPONENT, new JSONArray().put(data));
-
             obj.put("data", data);
             obj.put("estado", "exito");
         } catch (Exception e) {
@@ -67,4 +66,5 @@ public class ubicacion {
             e.printStackTrace();
         }
     }
+
 }

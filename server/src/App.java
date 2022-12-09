@@ -6,7 +6,6 @@ public class App {
             Servisofts.DEBUG = false;
             Servisofts.ManejadorCliente = ManejadorCliente::onMessage;
             Servisofts.Manejador = Manejador::onMessage;
-            // new PedidoTask();
             Servisofts.initialize();
         } catch (Exception e) {
             e.printStackTrace();

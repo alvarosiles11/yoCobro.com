@@ -8,8 +8,8 @@ import org.json.JSONObject;
 import Server.SSSAbstract.SSSessionAbstract;
 import Servisofts.SPGConect;
 
-public class ubicacion {
-    public static final String COMPONENT = "ubicacion";
+public class grupo {
+    public static final String COMPONENT = "grupo";
     // public static int validSeconds = 60 * 5;
 
     public static void onMessage(JSONObject obj, SSSessionAbstract session) {

@@ -1,5 +1,5 @@
 import Services from "../Services";
-import Registro from "../Services/Geologia/Components/ubicaciones/Pages/registro";
+import Registro from "../Services/Geologia/Components/ubicacion/Pages/registro";
 
 const Pages = {
   "/": Registro,

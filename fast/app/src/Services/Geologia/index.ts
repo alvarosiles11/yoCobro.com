@@ -1,6 +1,6 @@
 import {SPageListProps} from "servisofts-component";
-import grupos from "./Components/grupos";
-import Ubicacion from "./Components/ubicaciones";
+import grupos from "./Components/grupo";
+import Ubicacion from "./Components/ubicacion";
 
 const ServiceName = "geologia";
 
