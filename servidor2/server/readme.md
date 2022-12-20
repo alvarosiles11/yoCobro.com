@@ -1,1 +1,0 @@
-borrar carpeta SSL y ser

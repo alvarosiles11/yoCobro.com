@@ -9,6 +9,7 @@ import {
   SPage,
   SView
 } from "servisofts-component";
+import grupo from "..";
 
 class registros extends Component {
   constructor(props) {
@@ -18,11 +19,11 @@ class registros extends Component {
   }
 
   getContent() {
-    // this.data = {};
-    // if (this.key) {
-    //     this.data = Parent.Actions.getByKey(this.key, this.props);
-    //     if (!this.data) return <SLoad />
-    // }
+    this.data = {};
+    if (this.key) {
+      this.data = grupo.Actions.getByKey(this.key, this.props);
+      if (!this.data) return <SLoad />;
+    }
     return (
       <SForm
         ref={form => {
@@ -31,27 +32,45 @@ class registros extends Component {
         col={"xs-11 sm-9 md-7 lg-5 xl-4"}
         inputProps={{customStyle: "Calistenia"}}
         inputs={{
-          // descripcion: { label: "descripcion", isRequired: true, defaultValue: this.data["descripcion"], icon: <SIcon name={"InputUser"} width={40} height={30} /> },
-          descripcion: {
-            label: "descripcion",
+          empresa: {
+            defaultValue: this.data["empresa"],
+            label: "empresa",
+            isRequired: true,
+            icon: <SIcon name={"InputUser"} width={40} height={30} />
+          },
+
+          nombre_grupo: {
+            defaultValue: this.data["nombre_grupo"],
+            label: "nombre",
             isRequired: true,
             icon: <SIcon name={"InputUser"} width={40} height={30} />
           }
         }}
         onSubmit={values => {
-          // if (this.key) {
-          //     Parent.Actions.editar({
-          //         ...this.usr,
-          //         ...values
-          //     }, this.props);
-          // } else {
-          //     Parent.Actions.registro(values, this.props);
-          // }
+          if (this.key) {
+            grupo.Actions.editar(
+              {
+                ...this.data,
+                ...values
+              },
+              this.props
+            );
+          } else {
+            grupo.Actions.registro(values, this.props);
+          }
         }}
       />
     );
   }
   render() {
+    var reducer = this.props.state[grupo.component + "Reducer"];
+    if (reducer.type == "registro" || reducer.type == "editar") {
+      if (reducer.estado == "exito") {
+        reducer.estado = "";
+        SNavigation.goBack();
+      }
+    }
+
     return (
       <SPage title={"Registro de grupo "} center>
         <SView height={30} />

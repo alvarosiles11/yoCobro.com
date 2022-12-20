@@ -1,13 +1,16 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SInput, SMapView, SPage, SText, SThread, SView } from 'servisofts-component';
+import { SHr, SIcon, SInput, SLoad, SMapView, SNavigation, SPage, SText, SThread, SView } from 'servisofts-component';
+import ubicacion from '..';
 import PButtom from '../../../../../Components/PButtom';
 
-class registrosss extends Component {
+class registro extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            region: false, dirType: "moveMap", nombre: " "};
+        this.state = { region: false, dirType: "moveMap", nombre: " "};
+				this.key_grupo = SNavigation.getParam("key");
+				this.key_edit = SNavigation.getParam("key_edit");
+
     }
 
     componentDidMount() {
@@ -23,12 +26,19 @@ class registrosss extends Component {
     }
 
     showMapa() {
+
+			this.data = {};
+			if (this.key_edit) {
+				this.data = ubicacion.Actions.getByKey(this.key_edit, this.props);
+				if (!this.data) return <SLoad />;
+			}
+			console.log("direc ",this.data.longitud)
         return <>
             <SView col={"xs-12"} flex>
                 <SMapView
                     initialRegion={{
-                        latitude: -17.7833276,
-                        longitude: -63.1821408,
+                        latitude: this.data.latitud??-17.7833276,
+                        longitude: this.data.longitud??-63.1821408,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}
@@ -65,18 +75,25 @@ class registrosss extends Component {
 
         if (this.state.nombre != aux) {
             this.state.nombre = aux;
-            // this.setState({ ...this.state });
+            this.setState({ ...this.state });
         }
 
         return aux;
     }
 
     getAlgo() {
+			// this.data = {};
+			// if (this.key_edit) {
+			// 	this.data = ubicacion.Actions.getByKey(this.key_edit, this.props);
+			// 	if (!this.data) return <SLoad />;
+			// }
+
         //  if (!this.props.state.direccion_usuarioReducer.miDireccion) return null;
         return <SView col={"xs-11"} >
             <SInput fontSize={12} placeholder={"Nombre de la Ubicación"}
                 isRequired={true}
                 height={55}
+
                 ref={(ref) => { this.inpNombreUbicacion = ref }}
             />
         </SView>
@@ -87,20 +104,22 @@ class registrosss extends Component {
         var _latitude;
         var _longitude;
 
-        // let reducer = this.props.state.direccion_usuarioReducer
-        // if (reducer.type == "registro" && reducer.estado == "exito") {
-        //     reducer.estado = "";
-        //     this.props.dispatch({
-        //         component: "direccion_usuario",
-        //         type: "editarMiDireccion",
-        //         data: reducer.lastRegister
-        //     })
+				var reducer = this.props.state[ubicacion.component + "Reducer"];
+        if (reducer.type == "registro" && reducer.estado == "exito") {
+            reducer.estado = "";
+            this.props.dispatch({
+                component: "direccion_usuario",
+                type: "editarMiDireccion",
+                data: reducer.lastRegister
+            })
 
-        //     _direcion = this.state?.nombre;
-        //     _latitude = this.state?.latitude;
-        //     _longitude = this.state?.longitude;
-        //     SNavigation.replace("/");
-        // }
+            _direcion = this.state?.nombre;
+            _latitude = this.state?.latitude;
+            _longitude = this.state?.longitude;
+            // SNavigation.replace("/");
+			//todo volver lista ubicacion por el codigo de grupo
+            SNavigation.goBack();
+        }
         // this.getGeocode()
 
 
@@ -129,13 +148,19 @@ class registrosss extends Component {
                     <PButtom fontSize={16} onPress={() => {
                         if (!this.inpNombreUbicacion.verify()) return null;
                         var data = {
-                            descripcion: this.inpNombreUbicacion.getValue(),
-                            latitude: this.state.region?.latitude,
-                            longitude: this.state.region?.longitude,
-                            direccion: this.state.nombre,
+
+													descripcion_ubicacion: this.inpNombreUbicacion.getValue(),
+													direccion_ubicacion: "Av. roca coronado",
+													// direccion_ubicacion: this.state.nombre,
+													estado_ubicacion: "1",
+													fecha_ubicacion: "1",
+                            key_grupo: this.key_grupo,
+                             latitud: this.state.region?.latitude,
+                            longitud: this.state.region?.longitude,
+
                         }
-                        console.log(data);
-                        // Parent.Actions.registro(data, this.props);
+                        // console.log(data);
+                        ubicacion.Actions.registro(data, this.props);
                      }}>ELEGIR ESTA UBICACIÓN</PButtom>
                 </SView>
                 <SHr height={10} />
@@ -149,4 +174,4 @@ class registrosss extends Component {
 const initStates = (state) => {
     return { state }
 };
-export default connect(initStates)(registrosss);
+export default connect(initStates)(registro);

@@ -32,7 +32,8 @@ const SocketProps = {
 
   //  host: 'tapekeapp.com',
   //   ssl: true,
-  host: "192.168.3.4",
+  // host: "192.168.3.4",
+  host: "34.106.209.215",
   ssl: false,
 
   port: {
