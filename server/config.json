@@ -1,9 +1,9 @@
 {
-  "ss": "servisofts.geologia",
+  "ss": "servisofts.distribucion",
   "socket_client": {
     "servicio": {
       "puerto": 10001,
-      "ip": "34.106.183.138",
+      "ip": "34.125.133.131",
       "cert": {
         "OU": "servicio",
         "pem": "servicio.pem"
@@ -12,25 +12,25 @@
     "reconectTime": 5000
   },
   "files": {
-    "url": "/u01/servisoftsFiles/geologia/",
-    "url_gpx": "/u01/servisoftsFiles/geologia/gpx/"
+    "url": "/u01/servisoftsFiles/distribucion/",
+    "url_gpx": "/u01/servisoftsFiles/distribucion/gpx/"
   },
   "data_base": {
     "puerto": 5432,
     "pass": "postgres",
-    "ip": "34.106.189.174",
-    "bd_name": "geologia",
+    "ip": "127.0.0.1",
+    "bd_name": "servicio.distribucion",
     "user": "postgres"
   },
-  "nombre": "geologia",
+  "nombre": "distribucion",
   "ssl": {
     "pass_jks": "Servisofts123.",
     "cert": {
       "ST": "Av Banzer",
       "C": "BO",
       "E": "alvarosiles@gmail.com",
-      "OU": "geologia",
-      "CN": "geologia.servisofts.com",
+      "OU": "distribucion",
+      "CN": "distribucion.servisofts.com",
       "L": "Santa Cruz",
       "O": "Servisofts SRL"
     },
@@ -39,8 +39,8 @@
   "mail_server": {
     "host": "smtp.gmail.com",
     "port": 465,
-    "email": "geologiaapp@gmail.com",
-    "password": "geologia123."
+    "email": "distribucionapp@gmail.com",
+    "password": "distribucion123."
   },
   "sms": {
     "api_key": "live_j9U3Nk0F2uTfjkj9GrPLPMMaW"
