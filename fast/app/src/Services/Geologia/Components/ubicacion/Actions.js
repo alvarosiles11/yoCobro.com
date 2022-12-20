@@ -12,12 +12,12 @@ export default class Actions {
         if (!data) {
             if (reducer.estado == "cargando") return null;
             SSocket.send({
-                service: Service.ServiceName,
+                // service: Service.ServiceName,
                 component: Parent.component,
                 version: Parent.version,
                 type: "getAll",
                 estado: "cargando",
-                key_usuario: props.state.usuarioReducer.usuarioLog.key,
+                // key_usuario: props.state.usuarioReducer.usuarioLog.key,
             })
             return null;
         }
@@ -32,34 +32,34 @@ export default class Actions {
 
     static registro = (data, props) => {
         SSocket.send({
-            service: Service.ServiceName,
+            // service: Service.ServiceName,
             component: Parent.component,
             version: Parent.version,
             type: "registro",
             estado: "cargando",
-            key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            // key_usuario: props.state.usuarioReducer.usuarioLog.key,
             data: data
         })
     }
     static editar = (data, props) => {
         SSocket.send({
-            service: Service.ServiceName,
+            // service: Service.ServiceName,
             component: Parent.component,
             version: Parent.version,
             type: "editar",
             estado: "cargando",
-            key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            // key_usuario: props.state.usuarioReducer.usuarioLog.key,
             data: data
         })
     }
     static eliminar = (data, props) => {
         SSocket.send({
-            service: Service.ServiceName,
+            // service: Service.ServiceName,
             component: Parent.component,
             version: Parent.version,
             type: "editar",
             estado: "cargando",
-            key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            // key_usuario: props.state.usuarioReducer.usuarioLog.key,
             data: {
                 ...data,
                 estado: 0,

@@ -1,10 +1,10 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SIcon, SInput, SLoad, SMapView, SNavigation, SPage, SText, SThread, SView } from 'servisofts-component';
+import { SHr, SIcon, SInput, SLoad, SMapView, SNavigation, SPage, SText, SThread, SView } from 'servisofts-component';
 import ubicacion from '..';
 import PButtom from '../../../../../Components/PButtom';
 
-class registro extends Component {
+class registro2 extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { region: false, dirType: "moveMap", nombre: " " };
@@ -26,6 +26,7 @@ class registro extends Component {
 	}
 
 	showMapa() {
+
 		this.data = {};
 		if (this.key_edit) {
 			this.data = ubicacion.Actions.getByKey(this.key_edit, this.props);
@@ -76,67 +77,53 @@ class registro extends Component {
 			this.state.nombre = aux;
 			this.setState({ ...this.state });
 		}
+
 		return aux;
 	}
 
+	getAlgo() {
 
-
-	formulario() {
-		this.data = {};
+		this.dataByKey = {};
 		if (this.key_edit) {
-			this.data = ubicacion.Actions.getByKey(this.key_edit, this.props);
-			if (!this.data) return <SLoad />;
+			this.dataByKey = ubicacion.Actions.getByKey(this.key_edit, this.props);
+			if (!this.dataByKey) return <SLoad />;
 		}
- 		return (
-			<SForm
-				ref={form => {
-					this.form = form;
-				}}
-				col={"xs-11 sm-9 lg-8"}
-				inputProps={{ customStyle: "Calistenia" }}
-				inputs={{
-					descripcion_ubicacion: {
-						defaultValue: this.data["descripcion_ubicacion"],
-						placeholder: "Nombre de la Ubicación",
-						isRequired: true,
-					}
-				}}
-				onSubmit={values => {
-					if (this.key_edit) {
-						values.direccion_ubicacion = "actualizado";
-						values.latitud = this.state.region?.latitude;
-						values.longitud = this.state.region?.longitude;
-						ubicacion.Actions.editar({ ...this.data, ...values }, this.props);
-					} else {
-						values.direccion_ubicacion = "Av. roca noooooooooooo";
-						values.key_grupo = this.key_grupo;
-						values.estado_ubicacion = "1";
-						values.latitud = this.state.region?.latitude;
-						values.longitud = this.state.region?.longitude;
-						ubicacion.Actions.registro(values, this.props);
-					}
-				}}
+		// console.log("direc ", this.dataByKey.longitud)
+
+		// this.data = {};
+		// if (this.key_edit) {
+		// 	this.data = ubicacion.Actions.getByKey(this.key_edit, this.props);
+		// 	if (!this.data) return <SLoad />;
+		// }
+
+		//  if (!this.props.state.direccion_usuarioReducer.miDireccion) return null;
+		return <SView col={"xs-11"} >
+			<SInput fontSize={12} placeholder={"Nombre de la Ubicación"}
+				isRequired={true}
+				height={55}
+
+				ref={(ref) => { this.inpNombreUbicacion = ref }}
 			/>
-		);
+		</SView>
 	}
 
 	render() {
-		// var _direcion;
-		// var _latitude;
-		// var _longitude;
+		var _direcion;
+		var _latitude;
+		var _longitude;
 
 		var reducer = this.props.state[ubicacion.component + "Reducer"];
-		if (reducer.type == "registro" || reducer.type == "editar" && reducer.estado == "exito") {
+		if (reducer.type == "registro" && reducer.estado == "exito") {
 			reducer.estado = "";
-			// this.props.dispatch({
-			// 	component: "direccion_usuario",
-			// 	type: "editarMiDireccion",
-			// 	data: reducer.lastRegister
-			// })
+			this.props.dispatch({
+				component: "direccion_usuario",
+				type: "editarMiDireccion",
+				data: reducer.lastRegister
+			})
 
-			// _direcion = this.state?.nombre;
-			// _latitude = this.state?.latitude;
-			// _longitude = this.state?.longitude;
+			_direcion = this.state?.nombre;
+			_latitude = this.state?.latitude;
+			_longitude = this.state?.longitude;
 			// SNavigation.replace("/");
 			//todo volver lista ubicacion por el codigo de grupo
 			SNavigation.goBack();
@@ -152,8 +139,7 @@ class registro extends Component {
 			<SView col={"xs-12 md-10 lg-8 xl-6"} height={280} row center>
 				<SHr height={20} />
 				<SView col={"xs-12"} center row border={'transparent'}>
-
-					{this.formulario()}
+					{this.getAlgo()}
 					<SHr height={10} />
 				</SView>
 
@@ -168,11 +154,42 @@ class registro extends Component {
 
 				<SView col={"xs-8.8"} row center border={'transparent'}  >
 					<PButtom fontSize={16} onPress={() => {
-						this.form.submit();
+
+						if (!this.inpNombreUbicacion.verify()) return null;
+
+if (this.key_edit) {
+	var data = {
+		key_grupo: this.key_grupo,
+
+		descripcion_ubicacion: this.inpNombreUbicacion.getValue(),
+		direccion_ubicacion: "Av. roca noooooooooooo",
+		 estado_ubicacion: "1",
+		latitud: this.state.region?.latitude,
+		longitud: this.state.region?.longitude,
+		key_usuario:"1"
+	}
+	console.log(data);
+	ubicacion.Actions.editar(    ...this.data,
+		data, this.props);
+}
+						var data = {
+							key_grupo: this.key_grupo,
+
+							descripcion_ubicacion: this.inpNombreUbicacion.getValue(),
+							direccion_ubicacion: "Av. roca noooooooooooo",
+ 							estado_ubicacion: "1",
+							latitud: this.state.region?.latitude,
+							longitud: this.state.region?.longitude,
+
+						}
+						console.log(data);
+						ubicacion.Actions.registro(data, this.props);
 					}}>ELEGIR ESTA UBICACIÓN</PButtom>
 				</SView>
 				<SHr height={10} />
 			</SView>
+
+
 		</ SPage >
 		);
 	}
@@ -180,4 +197,4 @@ class registro extends Component {
 const initStates = (state) => {
 	return { state }
 };
-export default connect(initStates)(registro);
+export default connect(initStates)(registro2);

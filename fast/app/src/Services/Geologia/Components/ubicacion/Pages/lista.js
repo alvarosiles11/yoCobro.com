@@ -7,7 +7,7 @@ import FloatButtomTap from '../../../../../Components/FloatButtomTap';
 
 
 
-class listo extends Component {
+class lista extends Component {
 	constructor(props) {
 		super(props);
 
@@ -77,7 +77,7 @@ class listo extends Component {
 							<SView col={"xs-12"} height={40} row backgroundColor={"transparent"} style={{ overflow: 'hidden', }}   >
 								<SText col={"xs-12"} fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj.latitud + " " + obj.longitud}</SText>
 								{/* <SText col={"xs-12"} fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj.direccion}</SText> */}
- 							</SView>
+							</SView>
 						</SView>
 						<SView width={36} height center backgroundColor={"transparent"} onPress={() => {
 							// Parent.Actions.eliminar(obj, this.props);
@@ -94,51 +94,51 @@ class listo extends Component {
 
 		})
 	}
-	getDirecciones(){
+	getDirecciones() {
 		var data = ubicacion.Actions.getAll(this.props);
 		if (!data) return <SLoad />
 
-    return Object.keys(data).map((key) => {
+		return Object.keys(data).map((key) => {
 			var obj = data[key];
 			if (obj.key_grupo != this.key) return;
 			if (obj.estado != 1) return;
 
 			return <SView key={"itmDirection" + key}>
-			<SView col={"xs-12"} height={70} row center border={"transparent"} onPress={() => {
+				<SView col={"xs-12"} height={70} row center border={"transparent"} onPress={() => {
 
-			}} >
-				<SView col={"xs-2"} height center backgroundColor={"transparent"}      >
-					<SView height={36} width={36} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
-						<SIcon name={'Marker'} height={24} width={40} fill={'#484848'} />
-					</SView>
-				</SView>
-
-				<SView col={"xs-10"} height row style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}  >
-					<SView flex row center style={{ justifyContent: 'flex-start', }}  >
-						<SText col={"xs-12"} height={20} backgroundColor={"transparent"} fontSize={15} font={"Roboto"} color={STheme.color.primary} >{obj.descripcion_ubicacion}</SText>
-						<SView col={"xs-12"} height={40} row backgroundColor={"transparent"} style={{ overflow: 'hidden', }}   >
-							<SText col={"xs-12"} fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj.direccion_ubicacion}</SText>
-							<SText col={"xs-12"} fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj.latitud + " " + obj.longitud}</SText>
-							</SView>
-					</SView>
-					<SView width={36} height center backgroundColor={"transparent"} onPress={() => {
- 					}} >
-						<SView height={36} width={36} center  onPress={() => { 	SPopup.confirm({ title: "Eliminar", message: "¿Esta seguro de eliminar?", onPress: () => { ubicacion.Actions.eliminar(obj, this.props) } }) }} >
-							<SIcon name={'DeleteDir'} height={20} width={40} fill={'#484848'} />
+				}} >
+					<SView col={"xs-2"} height center backgroundColor={"transparent"}      >
+						<SView height={36} width={36} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
+							<SIcon name={'Marker'} height={24} width={40} fill={'#484848'} />
 						</SView>
-						{/* <SView height={36} width={36} center  onPress={() => {
+					</SView>
+
+					<SView col={"xs-10"} height row style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}  >
+						<SView flex row center style={{ justifyContent: 'flex-start', }}  >
+							<SText col={"xs-12"} height={20} backgroundColor={"transparent"} fontSize={15} font={"Roboto"} color={STheme.color.primary} >{obj.descripcion_ubicacion}</SText>
+							<SView col={"xs-12"} height={40} row backgroundColor={"transparent"} style={{ overflow: 'hidden', }}   >
+								<SText col={"xs-12"} fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj.direccion_ubicacion}</SText>
+								<SText col={"xs-12"} fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj.latitud + " " + obj.longitud}</SText>
+							</SView>
+						</SView>
+						<SView width={36} height center backgroundColor={"transparent"} onPress={() => {
+						}} >
+							<SView height={36} width={36} center onPress={() => { SPopup.confirm({ title: "Eliminar", message: "¿Esta seguro de eliminar?", onPress: () => { ubicacion.Actions.eliminar(obj, this.props) } }) }} >
+								<SIcon name={'DeleteDir'} height={20} width={40} fill={'#484848'} />
+							</SView>
+							<SView height={36} width={36} center  onPress={() => {
 							SNavigation.navigate('ubicacion/registro', { key_edit: obj.key })
 						 }} >
 							<SIcon name={'Edit'} height={20} width={40} fill={'#484848'} />
-						</SView> */}
+						</SView>
+						</SView>
 					</SView>
-				</SView>
 
+				</SView>
+				<SHr height={10} />
 			</SView>
-			<SHr height={10} />
-		</SView>
-	})
- 	}
+		})
+	}
 
 
 	render() {
@@ -166,7 +166,7 @@ class listo extends Component {
 				</SView >
 			</ SPage >
 			<FloatButtomTap onPress={() => {
-																SNavigation.navigate('ubicacion/registro', { key: this.key })
+				SNavigation.navigate('ubicacion/registro', { key: this.key })
 
 
 			}} />
@@ -177,4 +177,4 @@ class listo extends Component {
 const initStates = (state) => {
 	return { state }
 };
-export default connect(initStates)(listo);
+export default connect(initStates)(lista);

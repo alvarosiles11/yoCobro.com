@@ -9,42 +9,42 @@ import ubicacion from '../../ubicacion';
 
 
 class grafico extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {region: false, dirType: "moveMap", nombre: " "};
-				this.key = SNavigation.getParam("key");
-    }
+	constructor(props) {
+		super(props);
+		this.state = { region: false, dirType: "moveMap", nombre: " " };
+		this.key = SNavigation.getParam("key");
+	}
 
-    componentDidMount() {
-        new SThread(100, "sad", false).start(() => {
-            this.setState({
-                region: {
-                    latitude: -17.7833276,
-                    longitude: -63.1821408,
-                }
-            })
-        })
-
-    }
-
-		getDirecciones() {
-			var data = ubicacion.Actions.getAll(this.props);
-			if (!data) return <SLoad />
-			// if (!data) return null;
-
-			// var filtro = filtros.Actions.getFiltrosActivos(this.props);
-			// var data = Parent.Actions.getAllFilter(filtro, this.props);
-			// let size = 70;
-
-			return Object.keys(data).map((key) => {
-				var obj = data[key];
-
-				if(obj.key_grupo == this.key)
-			// return data.map((obj, index) => {
-
-					return <Marker key={"marker" + key} lat={obj.latitud} lng={obj.longitud} data={obj}  />
-
+	componentDidMount() {
+		new SThread(100, "sad", false).start(() => {
+			this.setState({
+				region: {
+					latitude: -17.7833276,
+					longitude: -63.1821408,
+				}
 			})
+		})
+
+	}
+
+	getDirecciones() {
+		var data = ubicacion.Actions.getAll(this.props);
+		if (!data) return <SLoad />
+		// if (!data) return null;
+
+		// var filtro = filtros.Actions.getFiltrosActivos(this.props);
+		// var data = Parent.Actions.getAllFilter(filtro, this.props);
+		// let size = 70;
+
+		return Object.keys(data).map((key) => {
+			var obj = data[key];
+
+			if (obj.key_grupo == this.key)
+				// return data.map((obj, index) => {
+
+				return <Marker key={"marker" + key} lat={obj.latitud} lng={obj.longitud} data={obj} />
+
+		})
 
 
 	}
@@ -80,90 +80,90 @@ class grafico extends Component {
 	// 		})
 	// }
 
-    showMapa() {
-        return <>
-            <SView col={"xs-12"} flex>
-                <SMapView
-                    initialRegion={{
-                        latitude: -17.7833276,
-                        longitude: -63.1821408,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                    }}
-                     ref={(map) => this.map = map}
+	showMapa() {
+		return <>
+			<SView col={"xs-12"} flex>
+				<SMapView
+					initialRegion={{
+						latitude: -17.7833276,
+						longitude: -63.1821408,
+						latitudeDelta: 0.0922,
+						longitudeDelta: 0.0421,
+					}}
+					ref={(map) => this.map = map}
 
-                    onRegionChangeComplete={(region) => {
-                         this.setState({ region: region, dirType: "moveMap" });
-                    }}
-                    preventCenter>
-	{this.getDirecciones()}
+					onRegionChangeComplete={(region) => {
+						this.setState({ region: region, dirType: "moveMap" });
+					}}
+					preventCenter>
+					{this.getDirecciones()}
 
-                </SMapView>
-            </SView>
+				</SMapView>
+			</SView>
 
-            <SView style={{ position: 'absolute', }} center   >
-                <SIcon name="MarcadorMapa" width={20} height={20} />
-            </SView>
-        </>
-    }
-
-
-
-    formulario() {
-        //  if (!this.props.state.direccion_usuarioReducer.miDireccion) return null;
-        return <SView col={"xs-11"} >
-            <SInput fontSize={12} placeholder={"grupo Ubicaciones"} isRequired={true} height={55} ref={(ref) => { this.inpNombreUbicacion = ref }}/>
-            {/* <SInput fontSize={12} placeholder={"Descripción"} isRequired={true} height={55} ref={(ref) => { this.inpNombreUbicacion = ref }}/> */}
-        </SView>
-    }
-
-    render() {
+			<SView style={{ position: 'absolute', }} center   >
+				<SIcon name="MarcadorMapa" width={20} height={20} />
+			</SView>
+		</>
+	}
 
 
-        return (<SPage title={'grupo direccion'} disableScroll center>
 
-            <SView col={"xs-12"} center flex>
-                {this.showMapa()}
-            </SView >
+	formulario() {
+		//  if (!this.props.state.direccion_usuarioReducer.miDireccion) return null;
+		return <SView col={"xs-11"} >
+			<SInput fontSize={12} placeholder={"grupo Ubicaciones"} isRequired={true} height={55} ref={(ref) => { this.inpNombreUbicacion = ref }} />
+			{/* <SInput fontSize={12} placeholder={"Descripción"} isRequired={true} height={55} ref={(ref) => { this.inpNombreUbicacion = ref }}/> */}
+		</SView>
+	}
 
-            <SView col={"xs-12 md-10 lg-8 xl-6"} height={280} row center>
-                <SHr height={20} />
-                <SView col={"xs-12"} center row border={'transparent'}>
-                    {this.formulario()}
-                    <SHr height={10} />
-                </SView>
-
-                <SView col={"xs-12"} row center height={40} border={'transparent'}>
-                    <SView width={40} center>
-                        <SIcon name={'LocationTapeke'} height={14} width={14} />
-                    </SView>
-                    <SView onPress={() => { this.map.center(); }}>
-                        <SText fontSize={14} font={"Roboto"} bold>Utilizar mi ubicación actual</SText>
-                    </SView>
-                </SView>
-
-                <SView col={"xs-8.8"} row center border={'transparent'}  >
-                    <PButtom fontSize={16} onPress={() => {
-                        // if (!this.inpNombreUbicacion.verify()) return null;
-                        // var data = {
-                        //     descripcion: this.inpNombreUbicacion.getValue(),
-                        //     latitude: this.state.region?.latitude,
-                        //     longitude: this.state.region?.longitude,
-                        //     direccion: this.state.nombre,
-                        // }
-                        // console.log(data);
-                        // Parent.Actions.registro(data, this.props);
-                     }}>GUARDAR ESTA UBICACIÓN</PButtom>
-                </SView>
-                <SHr height={10} />
-            </SView>
+	render() {
 
 
-        </ SPage >
-        );
-    }
+		return (<SPage title={'grafico'} disableScroll center>
+
+			<SView col={"xs-12"} center flex>
+				{this.showMapa()}
+			</SView >
+
+			{/* <SView col={"xs-12 md-10 lg-8 xl-6"} height={280} row center>
+				<SHr height={20} />
+				<SView col={"xs-12"} center row border={'transparent'}>
+					{this.formulario()}
+					<SHr height={10} />
+				</SView>
+
+				<SView col={"xs-12"} row center height={40} border={'transparent'}>
+					<SView width={40} center>
+						<SIcon name={'LocationTapeke'} height={14} width={14} />
+					</SView>
+					<SView onPress={() => { this.map.center(); }}>
+						<SText fontSize={14} font={"Roboto"} bold>Utilizar mi ubicación actual</SText>
+					</SView>
+				</SView>
+
+				<SView col={"xs-8.8"} row center border={'transparent'}  >
+					<PButtom fontSize={16} onPress={() => {
+						// if (!this.inpNombreUbicacion.verify()) return null;
+						// var data = {
+						//     descripcion: this.inpNombreUbicacion.getValue(),
+						//     latitude: this.state.region?.latitude,
+						//     longitude: this.state.region?.longitude,
+						//     direccion: this.state.nombre,
+						// }
+						// console.log(data);
+						// Parent.Actions.registro(data, this.props);
+					}}>GUARDAR ESTA UBICACIÓN</PButtom>
+				</SView>
+				<SHr height={10} />
+			</SView> */}
+
+
+		</ SPage >
+		);
+	}
 }
 const initStates = (state) => {
-    return { state }
+	return { state }
 };
 export default connect(initStates)(grafico);

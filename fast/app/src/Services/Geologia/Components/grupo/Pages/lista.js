@@ -40,7 +40,7 @@ class lista extends Component {
 									<SView col={"xs-8"} border={"transparent"} style={{}} >
 										<SText fontSize={16} font={"Roboto"} color={STheme.color.text} bold >Grupo: {obj?.nombre_grupo}</SText>
 										<SHr height={4} />
-										<SText fontSize={12} font={"Roboto"} color={STheme.color.text} >Descripción: {obj?.estado}  </SText>
+										<SText fontSize={12} font={"Roboto"} color={STheme.color.text} >empresa: {obj?.empresa}  </SText>
 									</SView>
 									<SView col={"xs-2"} center border={"transparent"}  >
 
@@ -51,9 +51,9 @@ class lista extends Component {
 											SPopup.confirm({ title: "Eliminar", message: "¿Esta seguro de eliminar?", onPress: () => { grupo.Actions.eliminar(obj, this.props) } }) }} >
 											<SIcon name={'Delete'} height={24} width={40} fill={'#E75248'} />
 										</SView>
-										{/* <SView height={40} width={40}  center onPress={() => { SNavigation.navigate('grupo/registro', { key: obj.key }) }} >
+										<SView height={40} width={40}  center onPress={() => { SNavigation.navigate('grupo/registro', { key: obj.key }) }} >
 											<SIcon name={'Edit'} height={24} width={40} fill={'#E75248'} />
-										</SView> */}
+										</SView>
 									</SView>
 
 									<SHr height={8} />

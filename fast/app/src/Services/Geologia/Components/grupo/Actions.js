@@ -41,6 +41,7 @@ export default class Actions {
     });
   };
   static editar = (data, props) => {
+		console.log("entro", data)
     SSocket.send({
       // service: Service.ServiceName,
       component: Parent.component,

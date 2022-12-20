@@ -1,1 +1,1 @@
-borrar carpeta SSL y ser
+borrar carpeta SSL y jdks
