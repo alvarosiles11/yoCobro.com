@@ -22,11 +22,7 @@ class TestListaGrupos extends Component {
 
 
 	getCompras() {
-		// const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
-		// var dataPedido = pedido.Actions.getPedidoByKeyUsuarioDetalle(this.props.state.usuarioReducer.usuarioLog.key, this.props)
-		// if (!dataPedido) return <SLoad />
-		// var arr = dataPedido.filter((item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago" && item.state != "timeout_pago")
-		// if (arr.length == 0) return this.sinCompras();
+
 		return <>
 
 			<SView col={"xs-12"} row center >
@@ -81,8 +77,7 @@ class TestListaGrupos extends Component {
 
 	render() {
 		return (<>
-			<SPage title={'Mis Grupos'} onRefresh={() => { // pedido.Actions.refresh(this.props);
-			}}> {this.getCompras()}
+			<SPage title={'Mis Grupos'} onRefresh={() => { }}> {this.getCompras()}
 			</SPage>
 			<FloatButtomTap onPress={() => { SNavigation.navigate("testRegistroGrupo"); }} />
 		</>
