@@ -24,6 +24,49 @@ export default class Actions {
         return data;
     }
 
+		static geocode = (data, props) => {
+			var reducer = props.state.locationGoogleReducer;
+			if (reducer.geocode[data.latitude.toFixed(6) + "," + data.longitude.toFixed(6)]) {
+					return reducer.geocode[data.latitude.toFixed(6) + "," + data.longitude.toFixed(6)];
+			}
+			if (reducer.estado == "cargando" && reducer.type == "geocode") {
+					return null;
+			}
+			// console.log("PIDIENDO====", data.latitude.toFixed(6) + "," + data.longitude.toFixed(6))
+			SSocket.send({
+					service: "geolocation",
+					component: 'locationGoogle',
+					// version: Parent.version,
+					type: "geocode",
+					estado: "cargando",
+					data: data
+
+			})
+			return null;
+	}
+
+	static autoComplete = (data, props) => {
+			var reducer = props.state.locationGoogleReducer;
+			if (reducer.autoComplete[data.direccion]) {
+					return reducer.autoComplete[data.direccion];
+			}
+			if (reducer.estado == "cargando" && reducer.type == "autoComplete") {
+					return null;
+			}
+			SSocket.send({
+					service: "geolocation",
+					component: 'locationGoogle',
+					// version: Parent.version,
+					type: "autoComplete",
+					estado: "cargando",
+					direccion: data.direccion,
+					data: data
+
+			})
+			return null;
+	}
+
+
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;

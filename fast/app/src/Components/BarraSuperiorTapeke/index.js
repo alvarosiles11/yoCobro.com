@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SIcon, STheme, SView } from 'servisofts-component';
+import { SIcon, SNavigation, STheme, SView } from 'servisofts-component';
 import NavBar from '../NavBar';
 
 
@@ -16,10 +16,10 @@ class BarraSuperiorTapeke extends Component {
 
  render() {
   var usuario = this.props.state.usuarioReducer.usuarioLog
-  if (!usuario) {
-   // SNavigation.navigate("login");
-   return <SView />
-  }
+  // if (!usuario) {
+  //  // SNavigation.navigate("login");
+  //  return <SView />
+  // }
 
   return (
    <SView col={"xs-12"} height={60} backgroundColor={STheme.color.primary} style={{
@@ -30,8 +30,12 @@ class BarraSuperiorTapeke extends Component {
     <SView col={"xs-12"} height row center flex style={{ paddingLeft: 16, paddingRight: 16 }}>
 
 
-     <SView height width={35} center backgroundColor={'transparent'} onPress={() => { NavBar.open(); }} >
-      <SIcon name={"KMenu"} width={32} />
+     <SView height width={35} center backgroundColor={'transparent'} onPress={() => { SNavigation.goBack() }} >
+     {/* <SView height width={35} center backgroundColor={'transparent'} onPress={() => { NavBar.open(); }} > */}
+      {/* <SIcon name={"Back"} width={16} stroke={"white"} /> */}
+			<SIcon name={"Back"} height={18} fill={STheme.color.secondary} style={{ transform: [{  }] }} />
+
+      {/* <SIcon name={"KMenu"} width={32} /> */}
      </SView>
 
      <SView flex center >
