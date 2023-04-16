@@ -1,6 +1,6 @@
 # yoCobro.com
- 
-## ![68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f6876524a434c467a6361737252346961377a2f67697068792e676966](https://user-images.githubusercontent.com/61075383/232262826-2b530265-2bfd-4d68-a814-dbd30fd2efe0.gif)
+
+### Hi there, it's Alvaro <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px">
 
 <p align="center">
 <img alt="GitHub watchers" src="https://img.shields.io/github/watchers/alvarosiles11/yoCobro.com?style=social"> <img alt="GitHub followers" src="https://img.shields.io/github/followers/alvarosiles11?style=social"> <img alt="GitHub forks" src="https://img.shields.io/github/forks/alvarosiles11/yoCobro.com?style=social">
